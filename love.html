@@ -99,7 +99,8 @@
 <body>
 
 <div class="cs">
-    <img src="http://wx1.sinaimg.cn/large/006gFOhdly1fr0hdrzlolj30b40b4dg7.jpg" id="logo">
+    <!-- <img src="http://wx1.sinaimg.cn/large/006gFOhdly1fr0hdrzlolj30b40b4dg7.jpg" id="logo"> -->
+    <img src="IMG_0766.jpg" id="logo">
 </div>
 <canvas class="canvas" width="1820" height="905"></canvas>
 <p class="text" style="color: #ed3073;">
@@ -671,10 +672,35 @@
 <!-- <audio id="audio" src="https://wangxun0618.github.io/情书.mp3" autoplay loop preload="auto" type="audio/mp3">
 </audio> -->
 
-<audio controls autoplay="autopaly" loop="loop" id="audios" preload>
+<!-- <audio autoplay="autopaly" loop="loop" id="audios" preload>
     <source src="https://wangxun0618.github.io/情书.mp3" type="audio/mp3" />
+</audio> -->
+
+<audio id="audios" loop="loop" controls="controls" autoplay preload>
+    <source src="https://wangxun0618.github.io/情书.mp3" type="audio/mpeg">
 </audio>
 
+<script>
+    var audio = document.getElementById('music1');
+    audio.play();
+    function audioAutoPlay(id){
+    var audio = document.getElementById(id),
+    play = function(){
+    audio.play();
+    document.removeEventListener("touchstart",play, false);
+    };
+    audio.play();
+    document.addEventListener("WeixinJSBridgeReady", function () {
+    play();
+    }, false);
+    document.addEventListener('YixinJSBridgeReady', function() {
+    play();
+    }, false);
+    document.addEventListener("touchstart",play, false);
+    }
+    audioAutoPlay('audios');
+    
+</script>
 
 </body>
 </html>
