@@ -668,33 +668,32 @@
     S.init();
 </script>
 
-<audio id="audio" src="https://wangxun0618.github.io/情书.mp3" controls autoplay loop preload="auto">
-</audio>
-  
-<script type="text/javascript">
+<!-- <audio id="audio" src="https://wangxun0618.github.io/情书.mp3" autoplay loop preload="auto" type="audio/mp3">
+</audio> -->
 
-var voice = document.getElementById('voice');
- 
- voice.play();   //调用播放
- //判断 WeixinJSBridge 是否存在
- if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
-     voice.play();
- }else {
-     //监听客户端抛出事件 "WeixinJSBridgeReady"
-     if (document.addEventListener) {
-         document.addEventListener("WeixinJSBridgeReady", function(){
-             voice.play();
-         }, false);
-     } else if (document.attachEvent) {
-         document.attachEvent("WeixinJSBridgeReady", function(){
-             voice.play();
-         });
-         document.attachEvent("onWeixinJSBridgeReady", function(){
-             voice.play();
-         });
-     }
+<audio autoplay="autopaly" loop="loop" id="audios">
+    <source src="情书.mp3" type="audio/mp3" />
+</audio>
+
+<script>
+    function audioAutoPlay(id){
+    var audio = document.getElementById(id),
+    play = function(){
+    audio.play();
+    document.removeEventListener("touchstart",play, false);
+    };
+    audio.play();
+    document.addEventListener("WeixinJSBridgeReady", function () {
+    play();
+    }, false);
+    document.addEventListener('YixinJSBridgeReady', function() {
+    play();
+    }, false);
+    document.addEventListener("touchstart",play, false);
     }
-</script>
+    audioAutoPlay('audios');
+    
+    </script>
 
 </body>
 </html>
